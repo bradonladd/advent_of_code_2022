@@ -4,7 +4,7 @@ import 'dart:io';
 
 void main() {
 
-  new File('input.txt').readAsLines().then((List<String> sectionList) {
+  new File('../input.txt').readAsLines().then((List<String> sectionList) {
     int counter = 0;
 
     for (var sections in sectionList) {
