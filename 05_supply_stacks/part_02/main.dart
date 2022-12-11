@@ -24,6 +24,7 @@ void main() {
     }
 
     for (var line = 10; line < instructions.length; line++) {
+      // Gather the operations into a list for easier processing
       String opString =
           instructions[line].replaceAll(new RegExp("( from | to )"), ",");
       opString = opString.replaceAll("move ", "");
