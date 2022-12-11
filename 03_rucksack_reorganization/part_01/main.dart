@@ -3,7 +3,7 @@ import 'dart:io';
 void main() {
   int points = 0;
 
-  new File('input.txt').readAsLines().then((List<String> rucksacks) {
+  new File('../input.txt').readAsLines().then((List<String> rucksacks) {
     
 
     for (var sack in rucksacks) {

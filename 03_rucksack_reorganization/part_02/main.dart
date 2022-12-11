@@ -5,7 +5,7 @@ import 'dart:io';
 void main() {
   int points = 0;
 
-  new File('input.txt').readAsLines().then((List<String> rucksacks) {
+  new File('../input.txt').readAsLines().then((List<String> rucksacks) {
     
     for (int group = 0; group < rucksacks.length; group = group + 3) {
       Set<String> firstElf = new Set();

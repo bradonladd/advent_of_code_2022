@@ -13,7 +13,7 @@ import 'dart:io';
 // Win - 6pt
 
 void main() {
-  new File('input.txt').readAsLines().then((List<String> games) {
+  new File('../input.txt').readAsLines().then((List<String> games) {
     var score = 0;
 
     for (var game in games) {

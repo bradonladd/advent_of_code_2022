@@ -2,7 +2,7 @@
 import 'dart:io';
 
 void main() {
-  new File('input.txt').readAsLines().then((List<String> content) {
+  new File('../input.txt').readAsLines().then((List<String> content) {
     var elves = [];
     var elf = [];
     for (var line in content) {
