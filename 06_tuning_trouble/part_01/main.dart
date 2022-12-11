@@ -5,6 +5,8 @@ void main() {
     int markerStart = 0;
     int markerEnd = 3;
 
+    // Sliding glass window problem, check to see if the four characters are unique
+    // and if so, break and print
     while (markerEnd < data.length) {
       Set packet = Set();
       bool unique = false;
