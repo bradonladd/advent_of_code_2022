@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'dart:convert';
-
 
 void main() {
   Map<String, int> drive = {"/": 0};
@@ -10,7 +8,7 @@ void main() {
     List<String> paths = [];
     for (var line = 0; line < commands.length; line++) {
       var command = commands[line];
-      if (command.contains("cd") && !command.contains("..")) {
+      if (command.contains("cd")) {
         var directory = command.replaceAll("\$ cd ", "");
         if (directory == "..") {
           paths.removeLast();
@@ -18,27 +16,20 @@ void main() {
           paths.add(directory);
         }
       } else if (command.contains("ls")) {
-        // Iterate over the directory until the next command is hits
-        for (var entry = line+1; entry < commands.length; entry++) {
-          if (commands[entry].contains("\$")) {
-            line = entry - 1;
-            break;
-          }
-
-          if (commands[entry].contains("dir")) {
-            var dir = commands[entry].replaceAll("dir ", "");
-            drive["${paths.join("-")}-$dir"] = 0;
-
-          } else {
-            var fileSize = commands[entry].replaceAll(new RegExp("[^0-9]"), "");
-            drive["/"] = drive["/"]! + int.parse(fileSize);
-            for (var i = 1; i < paths.length; i++) {
-              for (var j = 0; j <= i; j++) {
-                drive[paths.join('-')] = drive[paths.join('-')] ?? 0 + int.parse(fileSize);
-              }
-
+        continue;
+      } else {
+        print(command);
+        if (!command.contains("dir")) {
+          var fileSize = command.replaceAll(new RegExp("[^0-9]"), "");
+          List<String> tempPath = [];
+          for (var i = 0; i < paths.length; i++) {
+            tempPath.add(paths[i]);
+            String path = tempPath.join("-");
+            if (!drive.keys.contains(path)) {
+              drive[path] = int.parse(fileSize);
+            } else {
+              drive[path] = drive[path]! + int.parse(fileSize);
             }
-
           }
         }
       }
