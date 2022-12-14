@@ -35,19 +35,20 @@ void main() {
       }
     }
 
-    var toDelete = 0;
-    for (var size in drive.entries) {
-      if (size.value <= 100000) {
-        // print("${size.key} : ${size.value}");
-        toDelete = toDelete + size.value;
+    var sizeToFree = 30000000 - (70000000 - drive["/"]!);
+    
+    List<int> files = [];
+    for (var dir in drive.entries) {
+      if (dir.value >= sizeToFree) {
+        files.add(dir.value);
       }
     }
 
-    print(toDelete);
+    files.sort((a, b) => b.compareTo(a));
+    print(files.last);
   });
 }
 
 // Name: Bradon Ladd
 // Date Finished: 2022-12-13
-// Thanks to https://github.com/hyper-neutrino/ and Wren Cornell for providing clue
-//    to the solution
+
